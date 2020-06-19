@@ -16,5 +16,5 @@ type ServiceController (logger : ILogger<ServiceController>) =
             let http = new HttpClient()
             let! response = http.GetAsync(Environment.GetEnvironmentVariable("URL_SERVICE")) |> Async.AwaitTask
             let! content = response.Content.ReadAsStringAsync() |> Async.AwaitTask
-            return content + " .Net"
+            return if (content = "На") then content + " .Net" else "Ответ не соответствует ожидаемому"
         }
