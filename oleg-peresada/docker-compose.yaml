@@ -1,0 +1,16 @@
+version: '3'
+services:
+  service1:
+    build: .
+    image: "service1"
+    ports: 
+      - "8080:80"
+  service2:
+    build: ./service2
+    image: "service2"
+    environment:
+      URL_SERVICE: http://service1:80/
+    ports: 
+      - "8081:80"
+    depends_on:
+      - service1
